@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+source /opt/ros/noetic/setup.bash
+source /home/water/wdpt_ws/devel/setup.bash
+roslaunch delta_controller delta_transmitter.launch

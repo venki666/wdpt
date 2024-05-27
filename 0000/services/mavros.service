@@ -1,0 +1,11 @@
+[Unit]
+Description=mavros control
+After=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/mavros
+
+[Install]
+WantedBy=multi-user.target

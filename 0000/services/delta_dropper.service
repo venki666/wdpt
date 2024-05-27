@@ -1,0 +1,12 @@
+[Unit]
+Description=delta dropper control
+After=mavros.service
+
+[Service]
+Type=simple
+User=root
+ExecStartPre=/usr/bin/sleep 5
+ExecStart=/usr/local/bin/delta_dropper
+
+[Install]
+WantedBy=multi-user.target

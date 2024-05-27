@@ -1,0 +1,12 @@
+[Unit]
+Description=delta manipulator control
+After=mavros.service
+
+[Service]
+Type=simple
+User=root
+ExecStartPre=/usr/bin/sleep 5
+ExecStart=/usr/local/bin/delta_control
+
+[Install]
+WantedBy=multi-user.target
