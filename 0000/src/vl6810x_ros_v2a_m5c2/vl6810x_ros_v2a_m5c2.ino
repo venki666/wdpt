@@ -27,8 +27,8 @@ ros::Subscriber <std_msgs::Empty> drop_sub("drop", messageCb);
 
 // Which pin on the Arduino is connected to the NeoPixels?
 #define PIN 26 // For Neopixel
-//#define TOUT       25 // for dropper trigger
-#define TOUT 10 // Red LED for testing purpose
+#define TOUT       36 // for dropper trigger
+//#define TOUT 10 // Red LED for testing purpose
 #define PIN2 37 // Button for manual trigger
 
 // How many NeoPixels are attached to the Arduino?
@@ -132,17 +132,11 @@ void loop() {
   lux_msg.illuminance = lux;
   lux_msg.variance = 0;
   pub_lux.publish( & lux_msg);
-  if (lux < 100) {
-    pixels.setBrightness(255);
-    pixels.fill(pixels.Color(255, 255, 255), 0, 12);
-    pixels.show();
-    light_msg.a = 255;
-  } else {
-    pixels.setBrightness(126);
-    pixels.fill(pixels.Color(255, 255, 255), 0, 12);
-    pixels.show();
-    light_msg.a = 126;
-  }
+  long litn = map(lux,0,4000,0,255);
+  pixels.setBrightness(litn);
+  pixels.fill(pixels.Color(255, 255, 255), 0, 12);
+  pixels.show();
+  light_msg.a = litn;
   pub_light.publish( & light_msg);
   range_timer =  millis();    
  }
